@@ -1,11 +1,12 @@
 package Week3.SkillPracticeOne;
 
+import Important.Input;
+
 public class SkillsPracticeOneController {
     public static void main(String[] args) {
         String[] options = {"Problem 1", "Problem 2", "Problem 3", "Problem 4", "Problem 5", "Problem 6", "Problem 7"};
         while (true){
-//            String selection = Input.optionDialog("Selection", "Select an option", options, "Problem 1");
-            String selection = "Problem 8";
+            String selection = Input.optionDialog("Selection", "Select an option", options, "Problem 1");
             switch (selection) {
                 case "Problem 1" -> Problem1.problem1();
                 case "Problem 2" -> Problem2.problem2();

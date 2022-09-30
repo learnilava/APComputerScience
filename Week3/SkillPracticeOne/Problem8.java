@@ -8,7 +8,7 @@ public class Problem8 {
     }
 
     public static void problem8() {
-        double amount = Input.getDouble("Enter the amount");
+        displayResult(Input.getDouble("Enter the amount"));
     }
 
     public static void displayResult(double amount){

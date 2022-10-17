@@ -13,7 +13,7 @@ public class Problem4 {
         double total = 0;
 
         for (int i = 0;i < 3;i++){
-            String choice = Input.optionDialog("Eugene Lee's Fantastica Pizzeria", "Select an option", menu, "Pepperoni");
+            String choice = Input.segmentedOption("Eugene Lee's Fantastica Pizzeria", "Select an option", menu, "Pepperoni");
 
             if(choice == null){
                 break;

@@ -42,7 +42,7 @@ public class Input {
         JOptionPane.showMessageDialog(null, text);
     }
 
-    public static String optionDialog(String title, String message, String[] options, String initialValue){
+    public static String segmentedOption(String title, String message, String[] options, String initialValue){
         return (String) JOptionPane.showInputDialog(null, message, title, JOptionPane.QUESTION_MESSAGE, null, options, initialValue);
     }
 

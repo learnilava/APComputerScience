@@ -1,17 +1,23 @@
+import Important.Input;
+
 import javax.swing.*;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-//        System.out.println();
-//        Scanner scanner = new Scanner(System.in);
-//        int x = scanner.nextInt();
-//
-//        if (x == 4)
-//            System.out.println();
-//        char x = 'H';
-//        String d = "jsjsjs" + x;
-//        System.out.println(d);
+        String numString = String.valueOf(Input.getInt("Number Please"));
 
+        String lastNum = numString.substring(numString.length()-1);
+
+        if (lastNum.equals("4")){
+            Input.show("Unlucky for Asians");
+        }
+        if (lastNum.equals("8")){
+            Input.show("Unlucky for Asians");
+        }
+        if (numString.equals("13"))
+            Input.show("Unlucky for Westerners");
+        if (numString.equals("7"))
+            Input.show("Lucky for Westerners");
     }
 }

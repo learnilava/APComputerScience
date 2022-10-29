@@ -46,6 +46,23 @@ public class Input {
         return (String) JOptionPane.showInputDialog(null, message, title, JOptionPane.QUESTION_MESSAGE, null, options, initialValue);
     }
 
+    public static String passwordWindow(String message, String title){
+        Box box = Box.createHorizontalBox();
+
+        JLabel jl = new JLabel(message);
+        box.add(jl);
+
+        JPasswordField jpf = new JPasswordField(24);
+        box.add(jpf);
+
+        int button = JOptionPane.showConfirmDialog(null, box, title, JOptionPane.OK_CANCEL_OPTION);
+
+        if (button == JOptionPane.OK_OPTION) {
+            return String.valueOf(jpf.getPassword());
+        }
+        return null;
+    }
+
     public static int option(String message, String title, String[] responses){
         return JOptionPane.showOptionDialog(null, message, title, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, responses, 0);
     }

@@ -1,5 +1,7 @@
 package Week8;
 
+import Important.Input;
+
 public class StringShapesWithForLoop
 {
     public static void main(String[] args)
@@ -19,6 +21,46 @@ public class StringShapesWithForLoop
         String[] news= {"+", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
         System.out.println(challenge(19, 19, news));
     }
+
+    private static String charGrid()
+    {
+        int col = Input.getInt("How many columns?");
+        int rows = Input.getInt("How many rows?");
+        String finals = "";
+        for (int i = 0; i < rows; i++)
+        {
+            if (i % 2 == 0)
+            {
+                for (int e = 0; e < col; e++)
+                {
+                    if (e % 2 == 0)
+                    {
+                        finals += "*";
+                    } else
+                    {
+                        finals += "|";
+                    }
+                }
+                finals += "\n";
+            }
+            else
+            {
+                for (int e = 0; e < col; e++)
+                {
+                    if (e % 2 == 0)
+                    {
+                        finals += ("-");
+                    } else
+                    {
+                        finals += "+";
+                    }
+                }
+                finals += "\n";
+            }
+        }
+        return finals;
+    }
+
     public static String  one(int row, int col)
     {
         String finalShape = "";

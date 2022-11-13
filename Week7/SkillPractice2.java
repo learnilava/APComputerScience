@@ -1,6 +1,7 @@
 package Week7;
 
 import Important.Input;
+import Week3.SkillPracticeOne.*;
 
 import javax.swing.*;
 import java.util.TreeMap;
@@ -11,9 +12,19 @@ public class SkillPractice2
 
     public static void main(String[] args)
     {
-
-//        problem4c();
-        charGrid();
+        while (true){
+            String[] options = {"Problem 1", "Problem 2b", "Problem 3","Problem 3b", "Problem 4", "Problem 4b", "Problem 4c"};
+            String selection = Input.segmentedOption("Selection", "Select an option", options, "Problem 1");
+            switch (selection) {
+                case "Problem 1" -> problem2b();
+                case "Problem 2b" -> problem2b();
+                case "Problem 3" -> problem3();
+                case "Problem 3b" -> problem3b();
+                case "Problem 4" -> problem4(0, 10);
+                case "Problem 4b" -> problem4b(1, 10);
+                case "Problem 4c" -> problem4c();
+            }
+        }
     }
 
     private static void problem1(int min, int max)
@@ -91,8 +102,16 @@ public class SkillPractice2
     {
         int compGuess = (int)(Math.random() * (max - min)) + min;
         int guess = Input.getInt("Enter Guess");
+        System.out.println(compGuess);
         while (guess != compGuess)
-            guess = Input.getInt("Invalid try again");
+        {
+            String message = "";
+            if (guess > compGuess)
+                message = "Too High";
+            else
+                message = "Too Low";
+            guess = Input.getInt("Invalid try again\n" + message);
+        }
         Input.show("YES the number was " + compGuess);
 
     }
@@ -105,80 +124,69 @@ public class SkillPractice2
         while (guess != compGuess)
         {
             if (Math.abs(guess - compGuess) < 5)
-                guess = Input.getInt("Burning");
-            else if (Math.abs(guess - compGuess) <= 10)
-                guess = Input.getInt("Getting there");
-            else if (Math.abs(guess - compGuess) > 10)
-                guess = Input.getInt("Lukewarm");
+            {
+                if (guess > compGuess)
+                    guess = Input.getInt("Too high BURNING");
+                else
+                    guess = Input.getInt("Too low BURNING");
+            }
             else if (Math.abs(guess - compGuess) > 20)
-                guess = Input.getInt("Freezing");
-
+            {
+                if (guess > compGuess)
+                    guess = Input.getInt("Too high Freezing");
+                else
+                    guess = Input.getInt("Too low Freezing");
+            }
+            else if (Math.abs(guess - compGuess) > 10)
+            {
+                if (guess > compGuess)
+                    guess = Input.getInt("Too high Lukewarm");
+                else
+                    guess = Input.getInt("Too low Lukewarm");
+            }
+            else
+            {
+                if (guess > compGuess)
+                    guess = Input.getInt("Too high getting there");
+                else
+                    guess = Input.getInt("Too low getting there");
+            }
         }
         Input.show("YAY The number is indeed " + compGuess);
     }
 
     private static void problem4c()
     {
+        String[] options = {"Too High", "Just Right", "Too Low"};
         String range = Input.getString("Range ex. 1-10");
         String[] rangeNum = (range.split("-"));
-        int[] numberRange = {Integer.parseInt(rangeNum[0]), Integer.parseInt(rangeNum[1])};
-        int compGuess = (int)(Math.random() * (numberRange[1] - numberRange[0])) + numberRange[0];
-        boolean guess = true;
-        int guessNum;
-        System.out.println(compGuess);
-        while (guess)
+//        String[] rangeNum = ("1-100000000".split("-"));
+
+        int min = Integer.parseInt(rangeNum[0]);
+        int max = Integer.parseInt(rangeNum[1]);
+        int guesses = 1;
+
+        while (true)
         {
-            guessNum = Input.getInt("Input Guess");
-            if (guessNum == compGuess)
+            int compGuess = (int)(Math.random() * (max - min)) + min;
+            int choice = Input.option("How does " + String.valueOf(compGuess) + " sound??", "Guess # " + String.valueOf(guesses), options);
+            if (min == max)
             {
-                Input.show("GREAT");
+                choice = 10;
+                Input.show("WOW. I am dumb. It took " + guesses + " guesses There are no more numbers other than " + compGuess + " that satisfies your conditions");
+            }
+            if (choice == 2)
+                min = compGuess + 1;
+            else if (choice == 0)
+                max = compGuess - 1;
+            else
+            {
+                Input.show("WOW. I got your ugly number in " + guesses + " guesses");
                 break;
             }
-//            else if (Math.abs(guess - compGuess) <= 10)
-//                guessNum = Input.getInt("Getting there");
-//            else if (Math.abs(guess - compGuess) > 10)
-//                guessNum = Input.getInt("Lukewarm");
-//            else if (Math.abs(guess - compGuess) > 20)
-//                guessNum = Input.getInt("Freezing");
+
+            guesses++;
         }
     }
 
-    private static void charGrid()
-    {
-        int col = Input.getInt("How many columns?");
-        int rows = Input.getInt("How many rows?");
-        String finals = "";
-        for (int i = 0; i < rows; i++)
-        {
-            if (i % 2 == 0)
-            {
-                for (int e = 0; e < col; e++)
-                {
-                    if (e % 2 == 0)
-                    {
-                        finals += "*";
-                    } else
-                    {
-                        finals += "|";
-                    }
-                }
-                finals += "\n";
-            }
-            else
-            {
-                for (int e = 0; e < col; e++)
-                {
-                    if (e % 2 == 0)
-                    {
-                        finals += ("-");
-                    } else
-                    {
-                        finals += "+";
-                    }
-                }
-                finals += "\n";
-            }
-        }
-        System.out.println(finals);
-    }
 }
